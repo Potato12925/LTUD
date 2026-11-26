@@ -2,4 +2,18 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="welcome_primary">#4338CA</color>
+    <color name="welcome_on_primary">#FFFFFFFF</color>
+    <color name="welcome_surface">#F8F9FF</color>
+    <color name="welcome_card">#EFF4FF</color>
+    <color name="welcome_text">#0B1C30</color>
+    <color name="welcome_muted">#777586</color>
+    <color name="welcome_mint">#6FFBBE</color>
+    <color name="welcome_hero_background">#0A0D1A</color>
+    <color name="welcome_blue">#818CF8</color>
+    <color name="welcome_cyan">#38BDF8</color>
+    <color name="welcome_rose">#F43F5E</color>
+    <color name="welcome_amber">#FBBF24</color>
+    <color name="welcome_glow_outer">#644338CA</color>
+    <color name="welcome_glow_inner">#96C3C0FF</color>
 </resources>

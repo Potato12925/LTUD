@@ -1,0 +1,16 @@
+<resources>
+    <color name="welcome_primary">#C3C0FF</color>
+    <color name="welcome_on_primary">#100069</color>
+    <color name="welcome_surface">#101827</color>
+    <color name="welcome_card">#213145</color>
+    <color name="welcome_text">#EAF1FF</color>
+    <color name="welcome_muted">#B4B2C4</color>
+    <color name="welcome_mint">#6FFBBE</color>
+    <color name="welcome_hero_background">#0A0D1A</color>
+    <color name="welcome_blue">#818CF8</color>
+    <color name="welcome_cyan">#38BDF8</color>
+    <color name="welcome_rose">#F43F5E</color>
+    <color name="welcome_amber">#FBBF24</color>
+    <color name="welcome_glow_outer">#644338CA</color>
+    <color name="welcome_glow_inner">#96C3C0FF</color>
+</resources>

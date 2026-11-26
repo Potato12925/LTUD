@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.LTUD" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/welcome_primary</item>
+        <item name="colorOnPrimary">@color/welcome_on_primary</item>
+        <item name="colorSurface">@color/welcome_surface</item>
+        <item name="colorOnSurface">@color/welcome_text</item>
     </style>
 
     <style name="Theme.LTUD" parent="Base.Theme.LTUD" />

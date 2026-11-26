@@ -1,5 +1,6 @@
 package com.example.ltud;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -17,8 +18,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            int spacing = getResources().getDimensionPixelSize(R.dimen.welcome_screen_margin);
+            v.setPadding(systemBars.left + spacing, systemBars.top + spacing,
+                    systemBars.right + spacing, systemBars.bottom + spacing);
             return insets;
+        });
+        findViewById(R.id.btnReplayWelcome).setOnClickListener(view -> {
+            Intent intent = new Intent(this, WelcomeActivity.class);
+            intent.putExtra(WelcomeActivity.EXTRA_FORCE_SHOW, true);
+            startActivity(intent);
         });
     }
 }
