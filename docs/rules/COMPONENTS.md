@@ -18,7 +18,7 @@
 | Component | Source | Documented status |
 |---|---|---|
 | WelcomeActivity | `app/src/main/java/com/example/ltud/WelcomeActivity.java` | Three steps, dots, guest selection and replay; `EXTRA_FORCE_SHOW` controls replay; build verified 2026-11-26 |
-| KnowledgeOrbView | `app/src/main/java/com/example/ltud/KnowledgeOrbView.java` | Animated 3D point sphere with precomputed links, drag rotation and attachment lifecycle; XML use in `activity_welcome.xml`; build status not checked for this revision |
+| KnowledgeOrbView | `app/src/main/java/com/example/ltud/KnowledgeOrbView.java` | Animated 3D sphere with 1,200 particles, 750 precomputed synapse links, pulsing core, drag rotation and attachment lifecycle; XML use in `activity_welcome.xml`; build status not checked for this revision |
 | Onboarding feature row | `app/src/main/res/layout/item_welcome_feature.xml` | Title, description, symbol set by WelcomeActivity; build verified 2026-11-26 |
 | App theme | `app/src/main/res/values/themes.xml` and `values-night/themes.xml` | Material 3 DayNight palette from supplied Stitch screen; build verified 2026-11-26 |
 | Shared button/input/text styles | `res/values/styles.xml` | Proposed; unverified |

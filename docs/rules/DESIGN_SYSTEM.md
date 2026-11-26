@@ -15,7 +15,7 @@ This file defines the local design rules. Exact brand palette and typography wer
 - Centralize text appearances, text sizes, spacing, radii, elevation, and stroke widths; use `sp` for text and `dp` for dimensions. Structural values `0dp`, `match_parent`, `wrap_content`, and weights need no tokens.
 - If no spacing system exists, propose 4/8/16/24/32dp, 16dp screen padding, and 12dp card radius. These are suggested defaults; prioritize existing values and user-approved designs. Do not change established onboarding dimensions without approval.
 - Use Material text appearances. Name new styles by role (`Widget.LearnGraph.*`, `TextAppearance.LearnGraph.*`); reuse existing style names if different.
-- Put UI strings and content descriptions in `strings.xml`, quantities in plurals, and use `%1$s`/`%1$d` formatting where necessary. No hardcoded localized strings in code/layouts.
+- Put app-wide or repeated UI strings and content descriptions in `strings.xml`. Keep fixed text used once on a single screen directly in its XML attribute or Java statement. Use resources for localization, formatting, and plurals; use plurals for quantities.
 
 ## Layouts and components
 - Prefer MaterialButton, TextInputLayout/TextInputEditText, MaterialCardView, BottomNavigationView, and MaterialAlertDialogBuilder when dependencies are available.

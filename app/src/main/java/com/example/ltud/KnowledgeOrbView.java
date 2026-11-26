@@ -19,11 +19,12 @@ import androidx.core.content.ContextCompat;
 import java.util.Random;
 
 public class KnowledgeOrbView extends View {
-    private static final int NODE_COUNT = 900;
+    private static final int NODE_COUNT = 1200;
+    private static final int CONNECTED_NODE_COUNT = 450;
     private static final int CONNECTION_LIMIT = 750;
     private static final float SPHERE_RADIUS = 105f;
-    private static final float CONNECTION_DISTANCE = 24f;
-    private static final long ROTATION_DURATION_MS = 24000L;
+    private static final float CONNECTION_DISTANCE = 30f;
+    private static final long ROTATION_DURATION_MS = 36000L;
 
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final RectF frame = new RectF();
@@ -51,6 +52,7 @@ public class KnowledgeOrbView extends View {
     private float lastTouchY;
     private boolean dragging;
     private int connectionCount;
+    private float corePulse = 1f;
 
     public KnowledgeOrbView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -70,10 +72,12 @@ public class KnowledgeOrbView extends View {
         rotationAnimator.setRepeatCount(ValueAnimator.INFINITE);
         rotationAnimator.setInterpolator(new LinearInterpolator());
         rotationAnimator.addUpdateListener(animator -> {
+            float phase = (float) animator.getAnimatedValue();
+            corePulse = 1f + (float) Math.sin(phase * 14f) * 0.06f;
             if (!dragging) {
-                rotationY = baseRotationY + (float) animator.getAnimatedValue();
-                invalidate();
+                rotationY = baseRotationY + phase;
             }
+            invalidate();
         });
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
@@ -81,22 +85,22 @@ public class KnowledgeOrbView extends View {
     private void generateSphere() {
         Random random = new Random(114L);
         for (int index = 0; index < NODE_COUNT; index++) {
-            double u = random.nextDouble();
-            double v = random.nextDouble();
-            double theta = u * Math.PI * 2;
-            double phi = Math.acos(2 * v - 1);
-            float radius = SPHERE_RADIUS * (0.35f + 0.65f * (float) Math.sqrt(random.nextDouble()));
-            nodeX[index] = radius * (float) (Math.sin(phi) * Math.cos(theta));
-            nodeY[index] = radius * (float) (Math.sin(phi) * Math.sin(theta));
-            nodeZ[index] = radius * (float) Math.cos(phi);
+            double theta = random.nextDouble() * Math.PI * 2;
+            double phi = Math.acos(2 * random.nextDouble() - 1);
+            float nodeRadius = SPHERE_RADIUS
+                    * (0.35f + 0.65f * (float) Math.sqrt(random.nextDouble()));
+            nodeX[index] = nodeRadius * (float) (Math.sin(phi) * Math.cos(theta));
+            nodeY[index] = nodeRadius * (float) (Math.sin(phi) * Math.sin(theta));
+            nodeZ[index] = nodeRadius * (float) Math.cos(phi);
             nodeColors[index] = palette[random.nextInt(palette.length)];
         }
     }
 
     private void generateConnections() {
         Random random = new Random(115L);
-        for (int first = 0; first < 450 && connectionCount < CONNECTION_LIMIT; first++) {
-            for (int second = first + 1; second < 450 && connectionCount < CONNECTION_LIMIT; second++) {
+        for (int first = 0; first < CONNECTED_NODE_COUNT && connectionCount < CONNECTION_LIMIT; first++) {
+            for (int second = first + 1;
+                 second < CONNECTED_NODE_COUNT && connectionCount < CONNECTION_LIMIT; second++) {
                 float dx = nodeX[first] - nodeX[second];
                 float dy = nodeY[first] - nodeY[second];
                 float dz = nodeZ[first] - nodeZ[second];
@@ -115,7 +119,7 @@ public class KnowledgeOrbView extends View {
     @Override
     protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight) {
         super.onSizeChanged(width, height, oldWidth, oldHeight);
-        float radius = Math.min(width, height) * 0.38f;
+        float radius = Math.min(width, height) * 0.76f;
         frame.set(0, 0, width, height);
         clip.reset();
         float corner = getResources().getDimension(R.dimen.welcome_hero_corner);
@@ -145,7 +149,7 @@ public class KnowledgeOrbView extends View {
         super.onDraw(canvas);
         float width = getWidth();
         float height = getHeight();
-        float radius = Math.min(width, height) * 0.38f;
+        float radius = Math.min(width, height) * 0.76f;
         projectNodes(width, height, radius);
 
         canvas.save();
@@ -162,7 +166,7 @@ public class KnowledgeOrbView extends View {
 
         paint.setAlpha(255);
         paint.setShader(innerGlow);
-        canvas.drawCircle(width / 2, height / 2, radius * 0.4f, paint);
+        canvas.drawCircle(width / 2, height / 2, radius * 0.4f * corePulse, paint);
         paint.setShader(null);
         canvas.restore();
     }
@@ -177,11 +181,11 @@ public class KnowledgeOrbView extends View {
             float rotatedZ = -nodeX[index] * sinY + nodeZ[index] * cosY;
             float rotatedY = nodeY[index] * cosX - rotatedZ * sinX;
             rotatedZ = nodeY[index] * sinX + rotatedZ * cosX;
-            float perspective = 1f + rotatedZ / (SPHERE_RADIUS * 7f);
+            float perspective = 1f + rotatedZ / (SPHERE_RADIUS * 12f);
             projectedX[index] = width / 2f + rotatedX / SPHERE_RADIUS * radius * perspective;
             projectedY[index] = height / 2f + rotatedY / SPHERE_RADIUS * radius * perspective;
             projectedZ[index] = rotatedZ / SPHERE_RADIUS;
-            pointRadius[index] = (2.2f + (projectedZ[index] + 1f) * 0.8f)
+            pointRadius[index] = (0.9f + (projectedZ[index] + 1f) * 0.4f)
                     * getResources().getDisplayMetrics().density;
         }
     }
@@ -206,7 +210,12 @@ public class KnowledgeOrbView extends View {
         for (int index = 0; index < NODE_COUNT; index++) {
             paint.setShader(null);
             paint.setColor(nodeColors[index]);
-            paint.setAlpha((int) (55 + 200 * (projectedZ[index] + 1f) / 2f));
+            int depthAlpha = (int) (55 + 200 * (projectedZ[index] + 1f) / 2f);
+            if (index % 3 == 0) {
+                paint.setAlpha(depthAlpha / 5);
+                canvas.drawCircle(projectedX[index], projectedY[index], pointRadius[index] * 2.2f, paint);
+            }
+            paint.setAlpha(depthAlpha);
             canvas.drawCircle(projectedX[index], projectedY[index], pointRadius[index], paint);
         }
         paint.setAlpha(255);

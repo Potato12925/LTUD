@@ -8,7 +8,7 @@ Applies to the entire repository. Read this file before each task. All required 
 - Local-first, SQLiteOpenHelper + DAO, SharedPreferences for lightweight settings, Internal Storage for images; AI/network through the data layer.
 - Preserve existing Gradle configuration, packages, themes, contracts, screens, and data. Inspect the actual repository before editing; do not upgrade SDKs, add dependencies, or change schemas/APIs without approval.
 - UI must not directly perform SQL, networking, graph algorithms, or image processing; never block the main thread.
-- Do not hardcode colors, user-facing strings, or shared dimensions in screens. Reuse resources and components before creating new ones.
+- Do not hardcode colors or shared dimensions in screens. Write fixed, screen-specific UI text directly in its one-use XML attribute or Java statement; do not create a `strings.xml` entry for text used only once on one screen. Use `strings.xml` for app-wide text, text reused in multiple places, and text that needs localization or formatting/plural rules. Reuse resources and components before creating new ones.
 - Never store plaintext passwords/tokens, commit or log secrets, bypass authentication, or present simulated AI results as real data.
 - Do not delete data, reset Git, overwrite others' changes, commit, or push unless requested.
 - Each Markdown rule file must contain at most 300 lines, including blank lines. Split by topic if necessary and update the routing table without losing contract details.

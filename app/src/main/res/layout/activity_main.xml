@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_guest_title"
+        android:text="Chào mừng đến LearnGraph AI"
         android:textAppearance="?attr/textAppearanceHeadlineMedium" />
 
     <TextView
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/welcome_gap_medium"
         android:gravity="center"
-        android:text="@string/welcome_guest_description"
+        android:text="Bạn đang ở chế độ khách. Các tính năng học tập sẽ được bổ sung trong các bước phát triển tiếp theo."
         android:textAppearance="?attr/textAppearanceBodyLarge" />
 
     <com.google.android.material.button.MaterialButton
@@ -25,5 +25,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/welcome_gap_large"
-        android:text="@string/welcome_replay" />
+        android:text="Xem lại giới thiệu" />
 </LinearLayout>

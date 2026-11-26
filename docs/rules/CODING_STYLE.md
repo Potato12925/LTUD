@@ -14,9 +14,9 @@ Sources: DEVELOPMENT_GUIDE and course topics 03, 04, 07. Preserve existing conve
 
 ## XML
 - File/resource names use snake_case: activity_, fragment_, item_, component_, dialog_, bottom_sheet_, ic_, bg_, btn_, selector_. IDs use existing camelCase convention.
-- Prefix strings by feature (`auth_login_button`, `subject_empty_state`); styles/tokens follow DESIGN_SYSTEM.
+- Prefix shared string resources by feature (`auth_login_button`, `subject_empty_state`); styles/tokens follow DESIGN_SYSTEM. Fixed text used once on one screen may be written directly in that XML attribute or Java statement.
 - Keep layouts readable and avoid duplicate blocks; declare width/height, complete constraints, and matching XML/Java IDs.
-- Do not hardcode device paths, secrets, colors, or UI strings. No business logic in Views.
+- Do not hardcode device paths, secrets, or colors. Use `strings.xml` for app-wide/shared text, localization, formatting, and plurals; keep one-use fixed screen text inline instead of creating a resource used nowhere else. No business logic in Views.
 
 ## Review
 - Read similar files before creating new ones; check dead code, duplication, nulls, exceptions, lifecycle, and account data.
