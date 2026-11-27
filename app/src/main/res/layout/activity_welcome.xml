@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootWelcome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,17 +18,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="@dimen/welcome_screen_margin"
-        android:paddingEnd="@dimen/welcome_screen_margin"
-        android:paddingBottom="@dimen/welcome_gap_small">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/welcome_gap_small"
-            android:paddingBottom="@dimen/welcome_gap_large">
+            android:paddingTop="8dp"
+            android:paddingBottom="24dp">
 
             <TextView
                 android:layout_width="40dp"
@@ -43,7 +44,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/welcome_gap_small"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -64,11 +65,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/welcome_gap_small"
+                        android:layout_marginStart="8dp"
                         android:background="@drawable/bg_welcome_badge"
-                        android:paddingStart="@dimen/welcome_gap_small"
+                        android:paddingStart="8dp"
                         android:paddingTop="4dp"
-                        android:paddingEnd="@dimen/welcome_gap_small"
+                        android:paddingEnd="8dp"
                         android:paddingBottom="4dp"
                         android:text="AI 2.0"
                         android:textColor="@color/welcome_hero_background"
@@ -91,36 +92,40 @@
                 android:text="Bỏ qua" />
         </LinearLayout>
 
-        <com.example.ltud.KnowledgeOrbView
+        <com.example.ltud.feature.welcome.KnowledgeOrbView
             android:id="@+id/knowledgeOrb"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/welcome_hero_height"
+            android:layout_height="320dp"
+            android:background="@drawable/bg_welcome_hero"
+            android:clipToOutline="true"
             android:contentDescription="Minh họa mạng lưới tri thức" />
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/welcome_gap_medium"
+            android:layout_marginTop="7dp"
             android:gravity="center"
             android:textAppearance="?attr/textAppearanceHeadlineMedium"
             android:textColor="?attr/colorOnSurface"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="text" />
 
         <TextView
             android:id="@+id/tvDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/welcome_gap_small"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:textAppearance="?attr/textAppearanceBodyLarge"
-            android:textColor="@color/welcome_muted" />
+            android:textColor="@color/welcome_muted"
+            tools:text="text" />
 
         <LinearLayout
             android:id="@+id/layoutFeatures"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/welcome_gap_large"
+            android:layout_marginTop="24dp"
             android:orientation="vertical" />
 
     </LinearLayout>
@@ -130,23 +135,60 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="@dimen/welcome_screen_margin"
-        android:paddingEnd="@dimen/welcome_screen_margin"
-        android:paddingBottom="@dimen/welcome_gap_small">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp">
 
         <LinearLayout
             android:id="@+id/layoutDots"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_marginTop="@dimen/welcome_gap_medium"
+            android:layout_height="48dp"
+            android:layout_marginTop="7dp"
             android:gravity="center"
-            android:orientation="horizontal" />
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/dotTargetOne"
+                android:layout_width="48dp"
+                android:layout_height="48dp">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_welcome_dot" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/dotTargetTwo"
+                android:layout_width="48dp"
+                android:layout_height="48dp">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_welcome_dot" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/dotTargetThree"
+                android:layout_width="48dp"
+                android:layout_height="48dp">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_welcome_dot" />
+            </FrameLayout>
+        </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/welcome_button_height"
-            android:layout_marginTop="@dimen/welcome_gap_small"
+            android:layout_height="65dp"
+            android:layout_marginTop="8dp"
             android:textColor="?attr/colorOnPrimary"
             android:textSize="16sp" />
 

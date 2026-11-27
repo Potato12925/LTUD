@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/welcome_gap_medium"
+        android:layout_marginTop="7dp"
         android:gravity="center"
         android:text="Bạn đang ở chế độ khách. Các tính năng học tập sẽ được bổ sung trong các bước phát triển tiếp theo."
         android:textAppearance="?attr/textAppearanceBodyLarge" />
@@ -24,6 +25,6 @@
         android:id="@+id/btnReplayWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/welcome_gap_large"
+        android:layout_marginTop="24dp"
         android:text="Xem lại giới thiệu" />
 </LinearLayout>

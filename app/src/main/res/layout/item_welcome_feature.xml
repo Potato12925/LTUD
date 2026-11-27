@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/welcome_gap_small"
+    android:layout_marginBottom="8dp"
     android:background="@drawable/bg_welcome_card"
     android:gravity="center_vertical"
     android:minHeight="64dp"
     android:orientation="horizontal"
-    android:padding="@dimen/welcome_card_padding">
+    android:padding="14dp">
 
     <TextView
         android:id="@+id/tvFeatureIcon"
@@ -21,7 +21,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/welcome_gap_medium"
+        android:layout_marginStart="7dp"
         android:layout_weight="1"
         android:orientation="vertical">
 

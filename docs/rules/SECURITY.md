@@ -12,7 +12,7 @@ This file defines the local security and permission rules.
 - For unimplemented APIs, use clearly labeled interfaces/fakes in test/debug; do not claim OTP delivery or real login without a backend.
 
 ## Permissions / FileProvider
-- Request permissions only when needed; check API level (documented min 27). INTERNET is a normal permission.
+- Request permissions only when needed; check API level (current min 24). INTERNET is a normal permission.
 - Prefer Photo Picker/SAF or ActivityResultContracts for image selection; avoid broad storage permission. Request CAMERA only for APIs that require it; external camera uses FileProvider/contracts according to configuration.
 - For direct media access, use Android-version-specific permissions and handle limited photo selection. Request POST_NOTIFICATIONS on API 33+ when reminders are enabled.
 - Handle denial, cancellation, and permanent denial without crashes. FileProvider is not exported, grants temporary URIs, and exposes only minimal paths, never the entire file root.

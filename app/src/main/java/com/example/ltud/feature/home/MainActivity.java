@@ -1,13 +1,15 @@
-package com.example.ltud;
+package com.example.ltud.feature.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.ltud.R;
+import com.example.ltud.core.ui.SystemBarInsets;
+import com.example.ltud.feature.welcome.WelcomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,13 +18,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            int spacing = getResources().getDimensionPixelSize(R.dimen.welcome_screen_margin);
-            v.setPadding(systemBars.left + spacing, systemBars.top + spacing,
-                    systemBars.right + spacing, systemBars.bottom + spacing);
-            return insets;
-        });
+        View main = findViewById(R.id.main);
+        SystemBarInsets.applyToPadding(main);
         findViewById(R.id.btnReplayWelcome).setOnClickListener(view -> {
             Intent intent = new Intent(this, WelcomeActivity.class);
             intent.putExtra(WelcomeActivity.EXTRA_FORCE_SHOW, true);

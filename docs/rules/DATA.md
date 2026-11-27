@@ -13,7 +13,7 @@ Schema and keys: `docs/project/DATABASE_CONTRACT.md`. Do not change table/column
 - SQLite cascades do not delete disk files. Confirm subject/document deletion, commit the DB change, then clean up scoped files; handle orphans and retries.
 
 ## Preferences/session
-- Reuse PreferencesManager (`learngraph_prefs`) and centralize keys. Use `apply()` for ordinary settings; if synchronous confirmation is genuinely necessary, use `commit()` on a background thread and check its result.
+- Reuse `core/preferences/AppPreferences` for the implemented explicit guest choice. Its existing file/key are `learngraph_entry` / `guest_selected`; preserve them for installed users. The planned `learngraph_prefs` keys in DATABASE_CONTRACT are not implemented. Agree on any consolidation and migration before changing storage. Use `apply()` for ordinary settings; if synchronous confirmation is genuinely necessary, use `commit()` on a background thread and check its result.
 - Never store passwords/access/refresh tokens in ordinary preferences. See SECURITY.md. Remember Me preserves sessions according to policy, not passwords.
 - A default guest ID does not prove that Guest Mode was selected; distinguish unauthenticated, explicit guest, and cloud session states.
 - Logout clears relevant session/secrets without clearing onboarding/settings/learning data beyond the request. Prevent data leakage between accounts.

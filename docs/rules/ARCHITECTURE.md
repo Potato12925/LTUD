@@ -1,21 +1,23 @@
 # Android architecture
 
-This file defines the local architecture rules. Packages below are target organization, not claims that they already exist.
+This file defines the local architecture rules. The current entry flow uses `feature/welcome`, `feature/home`, `core/preferences`, and `core/ui`. Other packages below are planned boundaries, not claims that code exists.
 
 ## Layers
 | Package | Responsibility |
 |---|---|
-| `ui/welcome`, `ui/auth`, `ui/main`, `ui/subject`, `ui/scanner`, `ui/graph`, `ui/diagnostic`, `ui/study`, `ui/review`, `ui/profile`, `ui/settings` | Feature-specific Activities/Fragments, adapters, and UI state |
-| `ui/components` | Shared custom views, dialogs, and widgets (proposed when needed) |
+| `feature/welcome`, `feature/home` | Existing Activities and welcome-specific custom view |
+| `feature/<name>` | Future feature-specific Activities, Fragments, adapters, and UI state when implemented |
+| `core/preferences`, `core/ui` | Existing entry preferences and system-bar inset helper |
+| `core/components` | Future shared views/dialogs only when reused |
 | `domain` | GraphMerger, RootCauseAnalyzer, TopologicalStudyPlanner; testable Java algorithms |
 | `data/model` | Domain POJOs and enums |
-| `data/local` | DatabaseHelper, PreferencesManager, FileStorageManager |
+| `data/local` | Future DatabaseHelper and FileStorageManager; neither exists yet |
 | `data/local/dao` | UserDao, SubjectDao, DocumentScanDao, GraphDao, DiagnosticDao, StudySessionDao |
 | `data/remote` and `data/remote/dto` | ApiClient, AuthService, AiService, request/response DTOs |
 | `data/repository` | Local/remote coordination, transactions, cache, ownership |
-| `util` | Constants, ValidationUtils, AppExecutors |
+| `core/concurrency`, `core/utils` | Future executors and utilities when consumed |
 
-UI calls repositories/domain through clear interfaces; repositories call DAOs/services. Domain handles data and algorithms independently of Activities. DAOs must not depend on UI; adapters must not call networks. Do not create empty classes merely to match the diagram or impose MVVM/DI frameworks. ViewModel may be introduced when necessary and agreed.
+UI calls repositories/domain through clear interfaces when those layers exist; repositories call DAOs/services. Domain handles data and algorithms independently of Activities. DAOs must not depend on UI; adapters must not call networks. Do not create empty classes merely to match the diagram or impose MVVM/DI frameworks. Introduce a ViewModel for nontrivial asynchronous or retained screen state; the current entry flow does not need one.
 
 ## Activity/Fragment
 - Follow `initViews()`, `setupData()`/`loadData()`, `setupAdapter()`, and `setupListeners()` where applicable.

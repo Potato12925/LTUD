@@ -16,6 +16,7 @@ Sources: DEVELOPMENT_GUIDE and course topics 03, 04, 07. Preserve existing conve
 - File/resource names use snake_case: activity_, fragment_, item_, component_, dialog_, bottom_sheet_, ic_, bg_, btn_, selector_. IDs use existing camelCase convention.
 - Prefix shared string resources by feature (`auth_login_button`, `subject_empty_state`); styles/tokens follow DESIGN_SYSTEM. Fixed text used once on one screen may be written directly in that XML attribute or Java statement.
 - Keep layouts readable and avoid duplicate blocks; declare width/height, complete constraints, and matching XML/Java IDs.
+- Keep `values/dimens.xml` for dimensions reused across multiple screens or shared components. Write screen- or section-specific dimensions directly in the owning layout/drawable XML rather than making one-use dimension resources.
 - Do not hardcode device paths, secrets, or colors. Use `strings.xml` for app-wide/shared text, localization, formatting, and plurals; keep one-use fixed screen text inline instead of creating a resource used nowhere else. No business logic in Views.
 
 ## Review

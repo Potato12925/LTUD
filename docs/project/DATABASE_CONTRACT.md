@@ -126,6 +126,7 @@ CREATE INDEX idx_attempts_node_time ON quiz_attempts(node_id,timestamp DESC);
 - Models: User, Subject, DocumentScan, ConceptNode, ConceptEdge, DiagnosticQuestion, QuizAttempt, StudySession. Map snake_case DB to camelCase Java.
 
 ## SharedPreferences `learngraph_prefs`
+This table is planned, not the current entry preference implementation. The current `AppPreferences` preserves `learngraph_entry/guest_selected` for explicit guest entry; migration to the planned file/keys requires a separate decision.
 | Constant | Key | Type / documented default | Status |
 |---|---|---|---|
 | KEY_ONBOARDING_COMPLETED | onboarding_completed | boolean false | Present in snapshot |

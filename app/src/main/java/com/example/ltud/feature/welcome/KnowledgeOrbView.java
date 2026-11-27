@@ -1,13 +1,11 @@
-package com.example.ltud;
+package com.example.ltud.feature.welcome;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RadialGradient;
-import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -15,6 +13,8 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import androidx.core.content.ContextCompat;
+
+import com.example.ltud.R;
 
 import java.util.Random;
 
@@ -27,8 +27,6 @@ public class KnowledgeOrbView extends View {
     private static final long ROTATION_DURATION_MS = 36000L;
 
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final RectF frame = new RectF();
-    private final Path clip = new Path();
     private final float[] nodeX = new float[NODE_COUNT];
     private final float[] nodeY = new float[NODE_COUNT];
     private final float[] nodeZ = new float[NODE_COUNT];
@@ -120,10 +118,6 @@ public class KnowledgeOrbView extends View {
     protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight) {
         super.onSizeChanged(width, height, oldWidth, oldHeight);
         float radius = Math.min(width, height) * 0.76f;
-        frame.set(0, 0, width, height);
-        clip.reset();
-        float corner = getResources().getDimension(R.dimen.welcome_hero_corner);
-        clip.addRoundRect(frame, corner, corner, Path.Direction.CW);
         outerGlow = new RadialGradient(width / 2f, height / 2f, radius * 1.6f,
                 ContextCompat.getColor(getContext(), R.color.welcome_glow_outer),
                 Color.TRANSPARENT, Shader.TileMode.CLAMP);
@@ -152,8 +146,6 @@ public class KnowledgeOrbView extends View {
         float radius = Math.min(width, height) * 0.76f;
         projectNodes(width, height, radius);
 
-        canvas.save();
-        canvas.clipPath(clip);
         canvas.drawColor(ContextCompat.getColor(getContext(), R.color.welcome_hero_background));
         paint.setStyle(Paint.Style.FILL);
         paint.setShader(outerGlow);
@@ -168,7 +160,6 @@ public class KnowledgeOrbView extends View {
         paint.setShader(innerGlow);
         canvas.drawCircle(width / 2, height / 2, radius * 0.4f * corePulse, paint);
         paint.setShader(null);
-        canvas.restore();
     }
 
     private void projectNodes(float width, float height, float radius) {

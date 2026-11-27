@@ -1,8 +1,7 @@
-package com.example.ltud;
+package com.example.ltud.feature.welcome;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.drawable.GradientDrawable;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,26 +13,29 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.ltud.R;
+import com.example.ltud.core.preferences.AppPreferences;
+import com.example.ltud.core.ui.SystemBarInsets;
+import com.example.ltud.feature.home.MainActivity;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
 public class WelcomeActivity extends AppCompatActivity {
     public static final String EXTRA_FORCE_SHOW = "com.example.ltud.FORCE_SHOW_WELCOME";
-    private static final String PREFS_NAME = "learngraph_entry";
-    private static final String KEY_GUEST_SELECTED = "guest_selected";
     private static final String STATE_STEP = "step";
     private static final int STEP_COUNT = 3;
+    private static final int[] DOT_TARGET_IDS = {
+            R.id.dotTargetOne, R.id.dotTargetTwo, R.id.dotTargetThree
+    };
 
     private LinearLayout rootWelcome;
     private ScrollView welcomeContent;
     private TextView tvTitle;
     private TextView tvDescription;
     private LinearLayout layoutFeatures;
-    private LinearLayout layoutDots;
     private MaterialButton btnNext;
     private MaterialButton btnBack;
     private MaterialButton btnSkip;
@@ -61,13 +63,14 @@ public class WelcomeActivity extends AppCompatActivity {
     };
     private final String[] featureSymbols = {"◇", "✦", "↻", "?", "∑", "◎", "◷", "▣", "◈"};
     private int currentStep;
+    private AppPreferences appPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        appPreferences = new AppPreferences(getApplicationContext());
         if (!getIntent().getBooleanExtra(EXTRA_FORCE_SHOW, false)
-                && preferences.getBoolean(KEY_GUEST_SELECTED, false)) {
+                && appPreferences.isGuestSelected()) {
             openGuestHome();
             return;
         }
@@ -86,22 +89,16 @@ public class WelcomeActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
         tvDescription = findViewById(R.id.tvDescription);
         layoutFeatures = findViewById(R.id.layoutFeatures);
-        layoutDots = findViewById(R.id.layoutDots);
         btnNext = findViewById(R.id.btnNext);
         btnBack = findViewById(R.id.btnBack);
         btnSkip = findViewById(R.id.btnSkip);
-        ViewCompat.setOnApplyWindowInsetsListener(rootWelcome, (view, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            view.setPadding(bars.left, bars.top, bars.right, bars.bottom);
-            return insets;
-        });
+        SystemBarInsets.applyToPadding(rootWelcome);
     }
 
     private void setupListeners() {
         btnNext.setOnClickListener(view -> {
             if (currentStep == STEP_COUNT - 1) {
-                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-                        .edit().putBoolean(KEY_GUEST_SELECTED, true).apply();
+                appPreferences.selectGuest();
                 openGuestHome();
             } else {
                 currentStep++;
@@ -150,33 +147,18 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void renderDots() {
-        layoutDots.removeAllViews();
-        int small = getResources().getDimensionPixelSize(R.dimen.welcome_gap_small);
-        int wide = getResources().getDimensionPixelSize(R.dimen.welcome_gap_large);
         for (int step = 0; step < STEP_COUNT; step++) {
             final int selectedStep = step;
             boolean selected = step == currentStep;
-            FrameLayout target = new FrameLayout(this);
-            int touchSize = (int) (48 * getResources().getDisplayMetrics().density);
-            target.setLayoutParams(new LinearLayout.LayoutParams(touchSize, touchSize));
-            View dot = new View(this);
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                    selected ? wide : small, small);
-            params.gravity = android.view.Gravity.CENTER;
-            dot.setLayoutParams(params);
-            GradientDrawable background = new GradientDrawable();
-            background.setShape(GradientDrawable.RECTANGLE);
-            background.setCornerRadius(small);
-            background.setColor(ContextCompat.getColor(this,
-                    selected ? R.color.welcome_primary : R.color.welcome_card));
-            dot.setBackground(background);
+            FrameLayout target = findViewById(DOT_TARGET_IDS[step]);
+            View dot = target.getChildAt(0);
+            ViewCompat.setBackgroundTintList(dot, ColorStateList.valueOf(ContextCompat.getColor(this,
+                    selected ? R.color.welcome_primary : R.color.welcome_card)));
             target.setContentDescription("Bước " + (step + 1) + " trên " + STEP_COUNT);
             target.setOnClickListener(view -> {
                 currentStep = selectedStep;
                 showStep();
             });
-            target.addView(dot);
-            layoutDots.addView(target);
         }
     }
 

@@ -12,6 +12,7 @@ This is a standalone English documentation baseline for LearnGraph AI. It consol
 | REST and AI data contracts | `docs/project/API_CONTRACT.md` |
 | Accepted and unresolved decisions | `docs/project/DECISIONS.md` |
 | Implementation evidence | `docs/project/STATUS.md` |
+| Implemented reusable components | `docs/project/COMPONENT_CATALOG.md` |
 | Course alignment | `docs/project/COURSE_MAPPING.md` |
 | Implementation rules | `docs/rules/` (see AGENTS.md routing table) |
 
