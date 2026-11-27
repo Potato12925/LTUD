@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">LTUD</string>
+    <string name="app_name">LearnGraph AI</string>
+    <string name="welcome_brand">LearnGraph</string>
 </resources>
