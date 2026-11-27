@@ -17,4 +17,4 @@ This catalog reflects the checked-out app after the 27 November 2026 architectur
 
 ## Before adding a component
 
-Search the catalog and actual source, then decide whether reuse, configuration, or a small extraction serves the current feature. Keep one-use views and text with their screen. Add a catalog row only after an implementation has a consumer and has been checked.
+Search the catalog and actual source, then decide whether reuse, configuration, or a small extraction serves the current feature. Keep one-use views with their screen and put their text in feature-named string resources. Add a catalog row only after an implementation has a consumer and has been checked.

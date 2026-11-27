@@ -1,4 +1,62 @@
 <resources>
     <string name="app_name">LearnGraph AI</string>
     <string name="welcome_brand">LearnGraph</string>
+    <string name="welcome_logo_symbol">◎</string>
+    <string name="welcome_version_badge">AI 2.0</string>
+    <string name="welcome_tagline">University Cognitive Engine</string>
+    <string name="welcome_skip">Bỏ qua</string>
+    <string name="welcome_hero_description">Minh họa mạng lưới tri thức</string>
+    <string name="welcome_back">Quay lại</string>
+    <string name="welcome_login">Đã có tài khoản? Đăng nhập</string>
+    <string name="welcome_login_unavailable">Đăng nhập chưa khả dụng trong bản này</string>
+    <string name="welcome_continue_guest">Tiếp tục với tư cách khách  →</string>
+    <string name="welcome_continue_step">Tiếp tục (%1$d/%2$d)  →</string>
+    <string name="welcome_step_description">Bước %1$d trên %2$d</string>
+    <string name="welcome_preview_text">text</string>
+    <string-array name="welcome_titles">
+        <item>Bản đồ hóa Tri thức, Cá nhân hóa Học tập cùng AI</item>
+        <item>Trợ giảng Socratic, Hiểu sâu từng vấn đề</item>
+        <item>Lộ trình Cá nhân hóa cho việc ôn tập</item>
+    </string-array>
+    <string-array name="welcome_descriptions">
+        <item>Khám phá lỗ hổng kiến thức, học tập tương tác với trợ giảng Socratic và xây dựng lộ trình ôn tập.</item>
+        <item>Đối thoại theo câu hỏi gợi mở để tự khám phá bản chất của công thức và giải thuật.</item>
+        <item>Ôn tập theo tiến độ và các kiến thức cần củng cố, ngay cả khi bạn học ngoại tuyến.</item>
+    </string-array>
+    <string-array name="welcome_feature_titles">
+        <item>Đồ thị tri thức trực quan</item>
+        <item>Trợ giảng Socratic</item>
+        <item>Ôn tập ngắt quãng</item>
+        <item>Câu hỏi gợi mở</item>
+        <item>Giải thích công thức và code</item>
+        <item>Học chủ động</item>
+        <item>Lịch ôn tập cá nhân</item>
+        <item>Quét slide và bài giảng</item>
+        <item>Theo dõi kiến thức cần củng cố</item>
+    </string-array>
+    <string-array name="welcome_feature_descriptions">
+        <item>Nhìn thấy mối liên hệ giữa các khái niệm</item>
+        <item>Hiểu vấn đề qua đối thoại</item>
+        <item>Nhắc lại kiến thức đúng thời điểm</item>
+        <item>Tự tìm lời giải thay vì học thuộc</item>
+        <item>Khám phá từng bước trong bài học</item>
+        <item>Luyện tập và kiểm tra mức độ hiểu</item>
+        <item>Sắp xếp nội dung cần học</item>
+        <item>Biến tài liệu thành nội dung có cấu trúc</item>
+        <item>Tập trung vào phần còn yếu</item>
+    </string-array>
+    <string-array name="welcome_feature_symbols">
+        <item>◇</item>
+        <item>✦</item>
+        <item>↻</item>
+        <item>?</item>
+        <item>∑</item>
+        <item>◎</item>
+        <item>◷</item>
+        <item>▣</item>
+        <item>◈</item>
+    </string-array>
+    <string name="home_welcome">Chào mừng đến LearnGraph AI</string>
+    <string name="home_guest_placeholder">Bạn đang ở chế độ khách. Các tính năng học tập sẽ được bổ sung trong các bước phát triển tiếp theo.</string>
+    <string name="home_replay_welcome">Xem lại giới thiệu</string>
 </resources>

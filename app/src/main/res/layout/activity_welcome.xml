@@ -36,7 +36,7 @@
                 android:backgroundTint="?attr/colorPrimary"
                 android:background="@drawable/bg_welcome_logo"
                 android:gravity="center"
-                android:text="◎"
+                android:text="@string/welcome_logo_symbol"
                 android:textColor="?attr/colorOnPrimary"
                 android:textSize="24sp"
                 android:contentDescription="@string/welcome_brand" />
@@ -71,7 +71,7 @@
                         android:paddingTop="4dp"
                         android:paddingEnd="8dp"
                         android:paddingBottom="4dp"
-                        android:text="AI 2.0"
+                        android:text="@string/welcome_version_badge"
                         android:textColor="@color/welcome_hero_background"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -79,7 +79,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="University Cognitive Engine"
+                    android:text="@string/welcome_tagline"
                     android:textColor="@color/welcome_muted"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -89,7 +89,7 @@
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:text="Bỏ qua" />
+                android:text="@string/welcome_skip" />
         </LinearLayout>
 
         <com.example.ltud.feature.welcome.KnowledgeOrbView
@@ -98,7 +98,7 @@
             android:layout_height="320dp"
             android:background="@drawable/bg_welcome_hero"
             android:clipToOutline="true"
-            android:contentDescription="Minh họa mạng lưới tri thức" />
+            android:contentDescription="@string/welcome_hero_description" />
 
         <TextView
             android:id="@+id/tvTitle"
@@ -109,7 +109,7 @@
             android:textAppearance="?attr/textAppearanceHeadlineMedium"
             android:textColor="?attr/colorOnSurface"
             android:textStyle="bold"
-            tools:text="text" />
+            tools:text="@string/welcome_preview_text" />
 
         <TextView
             android:id="@+id/tvDescription"
@@ -119,7 +119,7 @@
             android:gravity="center"
             android:textAppearance="?attr/textAppearanceBodyLarge"
             android:textColor="@color/welcome_muted"
-            tools:text="text" />
+            tools:text="@string/welcome_preview_text" />
 
         <LinearLayout
             android:id="@+id/layoutFeatures"
@@ -203,7 +203,7 @@
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:text="Quay lại" />
+                android:text="@string/welcome_back" />
 
             <Space
                 android:layout_width="0dp"
@@ -215,7 +215,7 @@
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:text="Đã có tài khoản? Đăng nhập" />
+                android:text="@string/welcome_login" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

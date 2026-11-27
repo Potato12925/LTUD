@@ -1,5 +1,11 @@
 # Project status
 
+## Verified text resources — 27 November 2026
+
+- All current user-visible text in the welcome and guest-home screens, including dynamic step labels, accessibility descriptions, and layout preview text, is referenced from `app/src/main/res/values/strings.xml`. Related welcome copy uses string arrays; step labels use formatted strings. Internal preference and Intent keys remain in Java.
+- `AGENTS.md`, `docs/rules/CODING_STYLE.md`, `docs/rules/DESIGN_SYSTEM.md`, and `docs/project/COMPONENT_CATALOG.md` now require string resources for one-use UI text as well as reused text.
+- `assembleDebug` and `lintDebug` passed. Lint reported four unrelated warnings (welcome `clipToOutline` API level, AGP version, and two unused colors). Localization files for other languages and device-level visual checks are not present.
+
 ## Verified architecture — 27 November 2026
 
 - Current source packages: `feature/welcome` (`WelcomeActivity`, `KnowledgeOrbView`), `feature/home` (`MainActivity`), `core/preferences` (`AppPreferences`), and `core/ui` (`SystemBarInsets`). Manifest and welcome XML refer to the relocated classes.
@@ -15,7 +21,6 @@
 - `KnowledgeOrbView` now animates a deterministic multicolor 3D particle sphere, draws precomputed synapse connections, and responds to horizontal and vertical drag. Its animator is cancelled when detached. Build and runtime checks for this animation revision were not run at the user's request.
 - Refined the orb to follow the user's supplied Three.js sample: 2,100 spherical particles with soft halos, 750 nearby-node links, a pulsing nebula core, and continuous drag/auto rotation. Build and runtime checks remain unrun at the user's request.
 - Enlarged the rendered orb diameter and reduced the particle count to 1,200 at the user's request; kept the existing links and animation. Build and runtime checks were not run.
-- Updated string-resource guidance: one-use fixed text is inline; app-wide/reused and localizable text stays in resources. Applied this to the existing MainActivity/WelcomeActivity layouts and WelcomeActivity code; `strings.xml` now retains only app name and the repeated LearnGraph brand. No build or tests were run.
 - Updated dimension guidance (27 November 2026): `dimens.xml` is reserved for values reused across screens/components. Screen-specific dimensions now live in their owning layout/drawables; the fixed three-step indicators are declared in `activity_welcome.xml`. No build or tests were run.
 - `assembleDebug`, `testDebugUnitTest`, and `lintDebug` passed before the final sticky-action layout edit; `assembleDebug` passed again after that edit. On an emulator, the first welcome screen rendered, skip opened step 3, explicit guest selection opened `MainActivity`, and relaunch bypassed onboarding. The user requested stopping further checks before a final lint rerun or broader visual review.
 
