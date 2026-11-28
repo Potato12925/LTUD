@@ -16,6 +16,7 @@ Applies to the entire repository. Read this file before each task. All required 
 ## 2. Required task-specific reading
 Always read `docs/project/OVERVIEW.md` and `docs/project/STATUS.md`; for code changes, also read `docs/rules/CODING_STYLE.md` and `docs/rules/TESTING.md`. Read every matching row below, not just the first one.
 Before creating a class, layout, drawable, or shared resource, read `docs/project/COMPONENT_CATALOG.md` and inspect the listed source. Reuse or configure an existing implementation when it fits; extract meaningful duplication without building unused abstractions.
+For implementation work, also read every matching row in the pattern table below and follow its agent-facing implementation sequence. Pattern examples are not evidence that their classes exist; verify source before copying them.
 
 | Task | Additional required files |
 |---|---|
@@ -32,6 +33,18 @@ Before creating a class, layout, drawable, or shared resource, read `docs/projec
 | Any new or changed shared component | `docs/project/COMPONENT_CATALOG.md`, `docs/rules/COMPONENTS.md`, `docs/rules/CODING_STYLE.md` |
 | Refactoring or package moves | `docs/rules/ARCHITECTURE.md`, `docs/project/COMPONENT_CATALOG.md`, `docs/rules/TESTING.md` |
 
+| Implementation task | Additional required pattern |
+|---|---|
+| Activity or navigation | `docs/patterns/ACTIVITY_PATTERN.md` |
+| Fragment or view lifecycle | `docs/patterns/FRAGMENT_PATTERN.md` |
+| ListView, GridView, RecyclerView, or adapter | `docs/patterns/ADAPTER_PATTERN.md` |
+| SQLite helper, contract, DAO, or local persistence | `docs/patterns/DAO_PATTERN.md` |
+| Repository or coordination between sources | `docs/patterns/REPOSITORY_PATTERN.md` |
+| ViewModel or retained asynchronous screen state | `docs/patterns/VIEWMODEL_PATTERN.md` |
+| New or extended CRUD feature | `docs/patterns/CRUD_FEATURE_PATTERN.md` and its linked layer patterns |
+| New or changed UI component or layout | `docs/patterns/UI_COMPONENT_PATTERN.md` |
+| Database schema or version change | `docs/patterns/DATABASE_MIGRATION_PATTERN.md` |
+
 ## 3. Sources of truth and conflicts
 - Explicit user-confirmed requirements and accepted ADRs define scope; running code/configuration is evidence of implementation, not proof that every deviation is valid.
 - `FEATURES` defines behavior; `DATABASE_CONTRACT` and `API_CONTRACT` define planned contracts; `DESIGN_SYSTEM` defines resource usage. Actual visual values come from the repository and approved designs.
@@ -39,12 +52,11 @@ Before creating a class, layout, drawable, or shared resource, read `docs/projec
 - Use only this rule set as the project documentation baseline. Never require deleted legacy Markdown files or retrieve external rules. If information is missing, inspect the implementation, record the uncertainty, and request a decision when needed.
 
 ## 4. Workflow for every task
-1. Identify scope and acceptance criteria; read the required files from this rule set. Do not assume that additional instruction files exist.
-2. Inspect git status, project structure, Gradle, Manifest, related code/resources/DAOs/adapters, and reuse opportunities.
-   Inspect the component catalog and its source; check whether an equivalent class or resource already exists before creating one.
+1. Identify scope and acceptance criteria; read relevant rules and implementation patterns from the tables above. Do not assume that additional instruction files exist.
+2. Inspect the component catalog and its source, then verify git status, project structure, Gradle, Manifest, related source/resources/DAOs/adapters, and reuse opportunities. Check whether an equivalent class or resource already exists before creating one.
 3. For major changes or conflicts affecting contracts, report the issue and request a decision; for minor changes, choose the smallest suitable solution.
-4. Implement according to layer and coding conventions; handle errors, empty/loading states, lifecycle, and offline behavior where applicable. Avoid unrelated changes.
-5. Review the diff and check changed code for obvious errors. Follow `docs/rules/TESTING.md` for the smallest feasible automated check; do not run exhaustive tests by default. Never disable checks to conceal errors.
+4. Reuse existing components and implement only missing functionality. Extract shared infrastructure when actual consumers justify it. Follow layer and coding conventions; handle errors, empty/loading states, lifecycle, and offline behavior where applicable. Avoid unrelated changes.
+5. Review the diff and check changed code for obvious errors. Build and test the implementation according to `docs/rules/TESTING.md` with the smallest feasible checks; report any tooling limits. Never disable checks to conceal errors.
 6. Update `docs/project/COMPONENT_CATALOG.md` for new shared components and STATUS for verified changes; update contracts/ADRs only when agreed. Do not accumulate lengthy history in rule files.
    Keep the catalog limited to implemented components and record consumers, public APIs, and limitations.
 7. Respond in Vietnamese unless the user requests another language: summarize changes, files, checks actually performed, unrun tests, limitations, and open decisions. Keep repository rule documents in English.

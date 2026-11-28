@@ -54,6 +54,7 @@ public class KnowledgeOrbView extends View {
 
     public KnowledgeOrbView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setClipToOutline(true);
         palette = new int[]{
                 ContextCompat.getColor(context, R.color.welcome_blue),
                 ContextCompat.getColor(context, R.color.welcome_cyan),

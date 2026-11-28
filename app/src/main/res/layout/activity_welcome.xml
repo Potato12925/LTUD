@@ -97,7 +97,6 @@
             android:layout_width="match_parent"
             android:layout_height="320dp"
             android:background="@drawable/bg_welcome_hero"
-            android:clipToOutline="true"
             android:contentDescription="@string/welcome_hero_description" />
 
         <TextView

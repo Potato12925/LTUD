@@ -1,5 +1,13 @@
 # Project status
 
+## Verified implementation guidance — 28 November 2026
+
+- Revised all nine `docs/patterns/` files as coding-agent procedures: each now directs when to reuse or create code, where it belongs, the implementation sequence, and the evidence to collect. Future examples remain explicitly uncompiled and absent from production source.
+- Added nine reference patterns under `docs/patterns/` and task-based routing in `AGENTS.md`. They distinguish the implemented two-Activity entry flow and shared helpers from future SQLite, DAO, repository, adapter, Fragment, ViewModel, CRUD, and migration examples. No schema, dependency, or unused production class was added.
+- Moved welcome orb outline clipping from the API 31-only XML attribute to `KnowledgeOrbView.setClipToOutline(true)` (available at the app's minSdk 24) and removed unused `black`/`white` resources. No visual change is intended; device visual comparison remains unverified.
+- Added instrumented tests for guest choice persistence, repeat inset dispatch, and welcome Skip behavior. `assembleDebugAndroidTest` compiled them; they were not executed because `adb devices` found no connected device.
+- `assembleDebug`, `testDebugUnitTest`, `lintDebug`, and `assembleDebugAndroidTest` passed. Lint now reports one AGP update advisory (9.3.3 versus 9.5.3); Gradle configuration was preserved. Documentation path and 300-line checks, plus `git diff --check`, passed.
+
 ## Verified text resources — 27 November 2026
 
 - All current user-visible text in the welcome and guest-home screens, including dynamic step labels, accessibility descriptions, and layout preview text, is referenced from `app/src/main/res/values/strings.xml`. Related welcome copy uses string arrays; step labels use formatted strings. Internal preference and Intent keys remain in Java.
